@@ -6,20 +6,11 @@ var hostPortEndpoint = endPoint + "/hostport/{{hostName}}/{{port}}";
 
 $(document).ready(function () {
 	$('#s1').show();
-	$("#btnSearch").click(function () {
+
 		$('#loader').show();
-		if ($("#host").val().trim() != "") {
-			if ($("#port").val().trim() != "") {
-				callHostPortApi();
-            } else {
-				callErrorDialog('Missing <span class="label label-warning"> Port Number </span>, Please provide valid Port #');
-			}
-		} else if ($("#app").val().trim() != "") {
-			callAppIdApi();
-		} else {
-			callErrorDialog('Please provide Either <span class="label label-warning"> Hostname, Port No</span> or <span class="label label-warning">Application id</span> to get running application details.');
-		}
-	});
+		setTimeout(function(){loadDataFromJson();$('#loader').hide();},500);
+		$('#errorMsg').modal('hide'); 
+		reset();
 });
 
 
@@ -36,6 +27,7 @@ function callErrorDialog(msg)
 	$('#errorMsg').modal('show'); 
 	$('#loader').hide();
 }
+
 
 function renderApiData(data) {
 	if (typeof data === 'object') {

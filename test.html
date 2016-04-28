@@ -41,57 +41,8 @@
 		<!-- three colum layout -->
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3">
-					<div class="panel panel-info" style="margin-top: 30px;position:fixed;">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						Search by Host Name and Port No.
-					</h3>
-				</div>
-				<div class="panel-body">
-					<div class="form-group">
-						
-						<label for="host">
-							Host Name
-						</label>
-						<input type="text" class="form-control" id="host" placeholder="shipped-tx3.102.node"/>
-					</div>
-					<div class="form-group">
-						
-						<label for="port">
-							Port No
-						</label>
-						<input type="text" class="form-control" id="port" placeholder="134326"/>
-					</div>
-				</div>
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						Search by App Id.
-					</h3>
-				</div>
-				<div class="panel-body">
-					<div class="form-group">
-						
-						<label for="host">
-							App Id
-						</label>
-						<input type="text" class="form-control" id="app" placeholder="mantl--app" />
-					</div>
-					
-				</div>
-				<div class="panel-footer" style="text-align:center">
-					<div>
-						<button type="submit" class="btn btn-success" id="btnSearch">
-							Search
-						</button>
-						<div id="loader">
-							<img src="img/loading.gif"/>
-						</div>
-					</div>
-				</div>
-			</div>
-				</div>
-				<div class="col-md-5">
+	
+				<div class="col-md-6">
 					<div class="panel panel-info  app-details">
 						<div class="panel-heading">
 							<h3 class="panel-title">
@@ -166,7 +117,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<div id="s1" style="position:fixed;margin-top: 20px;">
 						<div id="treeOne"></div> <!-- tree node -->
 					</div>
@@ -210,10 +161,8 @@
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
         <script src="js/underscore-min.js"></script>
-		<!--<script src="data/D3Data.json"></script>
-		<script src="js/D3Code.js"></script>-->
 		<script src="js/searchedApp.js"></script>
-        <script src="js/custom.js"></script>
+        <script src="js/dummy.js"></script>
 		<script type="text/template" id="tasks_list">
 				<tr>
 					<td class="tid"> </td>
