@@ -7,19 +7,42 @@ var hostPortEndpoint = endPoint + "/hostport/{{hostName}}/{{port}}";
 $(document).ready(function () {
 	$('#s1').show();
 	$("#btnSearch").click(function () {
+		$('#loader').show();
 		if ($("#host").val().trim() != "") {
 			if ($("#port").val().trim() != "") {
 				callHostPortApi();
             } else {
-				alert("Port no is missing")
+				callErrorDialog('Missing <span class="label label-warning"> Port Number </span>, Please provide valid Port #');
 			}
 		} else if ($("#app").val().trim() != "") {
 			callAppIdApi();
 		} else {
-			alert("Search By either Host Name & Port No or Search By App Id")
+			callErrorDialog('Please provide Either <span class="label label-warning"> Hostname, Port No</span> or <span class="label label-warning">Application id</span> to get running application details.');
 		}
 	});
+	$("#btnDummy").click(function(){
+	
+		$('#loader').show();
+		setTimeout(function(){loadDataFromJson();$('#loader').hide();},500);
+		$('#errorMsg').modal('hide'); 
+		reset();
+	});
 });
+
+
+function reset()
+{
+	$("#host").val('');
+	$("#port").val('');
+	$("#app").val('');
+}
+//Error Message
+function callErrorDialog(msg)
+{
+	$("#msg").html(msg);
+	$('#errorMsg').modal('show'); 
+	$('#loader').hide();
+}
 
 function renderApiData(data) {
 	if (typeof data === 'object') {
@@ -98,9 +121,12 @@ function callHostPortApi() {
 	$.get(requestURL)
 	.done(function (data) {
 		renderApiData(data);
+		setTimeout(function(){$('#loader').hide();},500);
 	})
 	.fail(function (err) {
-        loadDataFromJson();
+		callErrorDialog("We didn't find any app running on given Host Name and Port No.");
+       // loadDataFromJson();
+		setTimeout(function(){$('#loader').hide();},500);
     });
 }
 
@@ -110,8 +136,11 @@ function callAppIdApi() {
 	$.get(requestURL)
 	.done(function (data) {
 		renderApiData(data);
+			setTimeout(function(){$('#loader').hide();},500);
 	})
 	.fail(function (err) {
-        loadDataFromJson();
+	callErrorDialog("We didn't find any app running for given application id.");
+        //loadDataFromJson();
+			setTimeout(function(){$('#loader').hide();},500);
     });
 }

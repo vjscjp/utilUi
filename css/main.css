@@ -75,7 +75,26 @@ a:focus {
     text-decoration: none;
        color: #0ab7ff;
 }
-
+.panel-title{
+	
+	font-size:14px;
+}
+.task-content
+{
+	margin-top:10px;
+}
+#loader
+{
+	position: absolute;
+    right: 0px;
+    margin-top: -8%;
+    margin-right: 34%;
+	display:none;
+}
+.label
+{
+	font-size:12px;
+}
 .light {
     font-weight: 400;
 }

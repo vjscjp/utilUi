@@ -44,9 +44,13 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3">
-					<br/><br/>
-					<h3 style="margin-bottom:10px">Search Application details</h3>
-					<p style="margin-bottom:0px">Search by Host Name and Port No.</p>
+					<div class="panel panel-info" style="margin-top: 30px;">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						Search by Host Name and Port No.
+					</h3>
+				</div>
+				<div class="panel-body">
 					<div class="form-group">
 						
 						<label for="host">
@@ -61,10 +65,13 @@
 						</label>
 						<input type="text" class="form-control" id="port" placeholder="134326"/>
 					</div>
-					<div class="form-group">
-						<img src="img/divider.png" />
-					</div>
-					<p style="margin-bottom:0px">Search by App Id.</p>
+				</div>
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						Search by App Id.
+					</h3>
+				</div>
+				<div class="panel-body">
 					<div class="form-group">
 						
 						<label for="host">
@@ -72,15 +79,27 @@
 						</label>
 						<input type="text" class="form-control" id="app" placeholder="mantl--app" />
 					</div>
-					<div class="form-group">
+					
+				</div>
+				<div class="panel-footer" style="text-align:center">
+					<div>
 						<button type="submit" class="btn btn-success" id="btnSearch">
 							Search
 						</button>
+						<div id="loader">
+							<img src="img/loading.gif"/>
+						</div>
 					</div>
 				</div>
+			</div>
+				</div>
 				<div class="col-md-4">
-					<div class="panel panel-default  app-details">
-						<div class="panel-heading">Application Details</div>
+					<div class="panel panel-info  app-details">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+						Application Details
+					</h3>
+							</div>
 						<div class="panel-body">
 							<div class="container-fluid">
 								<div class="row app-details-row">
@@ -108,7 +127,36 @@
 		</div>
 		<!-- load the d3.js library -->	
 		
-		
+		<div class="modal fade" id="errorMsg" role="dialog" aria-labelledby="errorMsg" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="margin-top:22%;">
+						<div class="modal-header">
+							 
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								×
+							</button>
+							<h4 class="modal-title" id="errorMsg">
+								Error
+							</h4>
+						</div>
+						<div class="modal-body" id="msg">
+							
+						</div>
+						<div class="modal-footer">
+							 
+							
+							<button type="button" id="btnDummy" class="btn btn-success">
+								I want To See Dummy Respose.
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								Close !
+							</button> 
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
 		
 		<script src="js/d3.v3.min.js"></script>
 		<script src="js/jquery.min.js"></script>
