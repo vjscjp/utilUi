@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		
+		<title>Shipped - Build, Deploy & Run Your Idea in 5 Minutes</title>
+		<link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+		<!-- Bootstrap Core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/D3Custom.css">
+		<link rel="stylesheet" type="text/css" href="css/Slider.css">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+
+		<link href="css/main.css" rel="stylesheet">
+		
+		<!-- Custom Fonts -->
+		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	</head>
+	<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+		<!-- Navigation -->
+		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a class="navbar-brand page-scroll" href="#page-top">
+						<img class="cisco-logo" src="img/cisco-logo.png" />
+					</a>
+					<div id="url" style="position: absolute; right: 10%; top: 32%;color:#fff;"></div>
+					<button type="button" class="btn btn-danger" id="btnLogout" style="position: absolute;right: 2%;top:25%;">
+						Logout
+					</button>
+				</div>
+				
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container -->
+		</nav>
+		<br/><br/>		<br/>
+		
+
+		<!-- three colum layout -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="panel panel-info" style="margin-top: 30px;position:fixed;">
+					<div class="panel-heading">
+					<h3 class="panel-title">
+						Search by App Id.
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						
+						<label for="host">
+							App Id
+						</label><br/>
+						<select type="text" class="form-control" id="app">
+						<option>--Select App Id--</option>
+						<option>Sample 1</option>
+						<option>Sample 2</option>
+						<option>Sample 3</option>
+						<option>Sample 4</option>
+						</select>
+					</div>
+					
+				</div>
+				
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						Search by Host Name and Port No.
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						
+						<label for="host">
+							Host Name
+						</label>
+						<input type="text" class="form-control" id="host" placeholder="shipped-tx3.102.node"/>
+					</div>
+					<div class="form-group">
+						
+						<label for="port">
+							Port No
+						</label>
+						<input type="text" class="form-control" id="port" placeholder="134326"/>
+					</div>
+				</div>
+				<div class="panel-footer" style="text-align:center">
+					<div>
+						<button type="submit" class="btn btn-success" id="btnSearch">
+							Search
+						</button>
+						<div id="loader">
+							<img src="img/loading.gif"/>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+				<div class="col-md-5">
+					<div class="panel panel-info  app-details">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								Application Details
+							</h3>
+							</div>
+						<div class="panel-body">
+							<table class="table table-striped">
+							<thead>
+							  <tr>
+								<th>KEY</th>
+								<th>VALUE</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr>
+								<td>ID</td>
+								<td id="id"></td>
+							  
+							  </tr>
+							  <tr>
+								<td>Project Name</td>
+								<td id="project_name"></td>
+							   
+							  </tr>
+							  <tr>
+								<td>Project Id</td>
+								<td id="project_id"></td>
+							  </tr>
+							  <tr>
+								<td>Env Name</td>
+								<td id="env_name"></td>
+							   
+							  </tr>
+							  <tr>
+								<td>Env Id</td>
+								<td id="env_id"></td>
+							  </tr>
+							   <tr>
+								<td>Service Name</td>
+								<td id="service_name"></td>
+							   
+							  </tr>
+							  <tr>
+								<td>Service Id</td>
+								<td id="service_id"></td>
+							  </tr>
+							</tbody>
+						  </table>
+							</div>
+					<div class="panel-heading">
+							<h3 class="panel-title">
+							Task Details
+					</h3>
+							</div>
+							<div class="panel-body">
+					<table class="table table-striped">
+							<thead>
+							  <tr>
+								<th>ID</th>
+								<th>HOST</th>
+								<th>PORT</th>
+							  </tr>
+							</thead>
+							<tbody class="app-details-row">
+							  
+							 
+							</tbody>
+						  </table>
+						
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					<div id="s1" style="position:fixed;margin-top: 20px;">
+						<div id="treeOne"></div> <!-- tree node -->
+					</div>
+                </div>
+			</div>
+		</div>
+		<!-- load the d3.js library -->	
+		
+		<div class="modal fade" id="errorMsg" role="dialog" aria-labelledby="errorMsg" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="margin-top:22%;">
+						<div class="modal-header">
+							 
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								×
+							</button>
+							<h4 class="modal-title" id="errorMsg">
+								Error
+							</h4>
+						</div>
+						<div class="modal-body" id="msg">
+							
+						</div>
+						<div class="modal-footer">
+							 
+							
+							<!-- <button type="button" id="btnDummy" class="btn btn-success">
+								I want To See Dummy Respose.
+							</button> -->
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								Close !
+							</button> 
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		
+		<script src="js/d3.v3.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+		<script src="js/searchedApp.js"></script>
+		<script src="js/common.js"></script>
+        <script src="js/custom.js"></script>
+		<script type="text/template" id="tasks_list">
+				<tr>
+					<td class="tid"> </td>
+					<td  class="host"></td>
+					<td  class="ports"></td>
+				</tr>
+        </script>
+		
+    </body>
+</html>

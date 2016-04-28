@@ -41,48 +41,41 @@
 		<!-- three colum layout -->
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3">
-					<div class="panel panel-info" style="margin-top: 30px;position:fixed;">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="panel panel-info" style="margin-top: 30px;position:fixed; width:20%;margin-left:5%;">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						Search by Host Name and Port No.
+						LOGIN TO MARATHON
 					</h3>
 				</div>
 				<div class="panel-body">
 					<div class="form-group">
 						
 						<label for="host">
-							Host Name
+							Marathon URL
 						</label>
-						<input type="text" class="form-control" id="host" placeholder="shipped-tx3.102.node"/>
+						<input type="text" class="form-control" id="url" placeholder="https://shipped-tx3-control-01.tx3.shipped-cisco.com/marathon"/>
 					</div>
 					<div class="form-group">
 						
 						<label for="port">
-							Port No
+							Username
 						</label>
-						<input type="text" class="form-control" id="port" placeholder="134326"/>
+						<input type="text" class="form-control" id="user" placeholder="synthetic-mon"/>
 					</div>
-				</div>
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						Search by App Id.
-					</h3>
-				</div>
-				<div class="panel-body">
 					<div class="form-group">
 						
-						<label for="host">
-							App Id
+						<label for="port">
+							Password
 						</label>
-						<input type="text" class="form-control" id="app" placeholder="mantl--app" />
+						<input type="text" class="form-control" id="pass" placeholder="xxxxxxxx"/>
 					</div>
-					
 				</div>
 				<div class="panel-footer" style="text-align:center">
 					<div>
-						<button type="submit" class="btn btn-success" id="btnSearch">
-							Search
+						<button type="submit" class="btn btn-info" id="btnLogin">
+							Login
 						</button>
 						<div id="loader">
 							<img src="img/loading.gif"/>
@@ -91,89 +84,10 @@
 				</div>
 			</div>
 				</div>
-				<div class="col-md-5">
-					<div class="panel panel-info  app-details">
-						<div class="panel-heading">
-							<h3 class="panel-title">
-						Application Details
-					</h3>
-							</div>
-						<div class="panel-body">
-							<table class="table table-striped">
-							<thead>
-							  <tr>
-								<th>KEY</th>
-								<th>VALUE</th>
-							  </tr>
-							</thead>
-							<tbody>
-							  <tr>
-								<td>ID</td>
-								<td id="id"></td>
-							  
-							  </tr>
-							  <tr>
-								<td>Project Name</td>
-								<td id="project_name"></td>
-							   
-							  </tr>
-							  <tr>
-								<td>Project Id</td>
-								<td id="project_id"></td>
-							  </tr>
-							  <tr>
-								<td>Env Name</td>
-								<td id="env_name"></td>
-							   
-							  </tr>
-							  <tr>
-								<td>Env Id</td>
-								<td id="env_id"></td>
-							  </tr>
-							   <tr>
-								<td>Service Name</td>
-								<td id="service_name"></td>
-							   
-							  </tr>
-							  <tr>
-								<td>Service Id</td>
-								<td id="service_id"></td>
-							  </tr>
-							</tbody>
-						  </table>
-							</div>
-					<div class="panel-heading">
-							<h3 class="panel-title">
-							Task Details
-					</h3>
-							</div>
-							<div class="panel-body">
-					<table class="table table-striped">
-							<thead>
-							  <tr>
-								<th>ID</th>
-								<th>HOST</th>
-								<th>PORT</th>
-							  </tr>
-							</thead>
-							<tbody class="app-details-row">
-							  
-							 
-							</tbody>
-						  </table>
-						
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div id="s1" style="position:fixed;margin-top: 20px;">
-						<div id="treeOne"></div> <!-- tree node -->
-					</div>
-                </div>
+				<div class="col-md-4"></div>
+			
 			</div>
 		</div>
-		<!-- load the d3.js library -->	
 		
 		<div class="modal fade" id="errorMsg" role="dialog" aria-labelledby="errorMsg" aria-hidden="true">
 				<div class="modal-dialog">
@@ -206,20 +120,10 @@
 				
 			</div>
 		
-		<script src="js/d3.v3.min.js"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-        <script src="js/underscore-min.js"></script>
-		<!--<script src="data/D3Data.json"></script>
-		<script src="js/D3Code.js"></script>-->
 		<script src="js/searchedApp.js"></script>
-        <script src="js/custom.js"></script>
-		<script type="text/template" id="tasks_list">
-				<tr>
-					<td class="tid"> </td>
-					<td  class="host"></td>
-					<td  class="ports"></td>
-				</tr>
-        </script>
+		        <script src="js/common.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>
