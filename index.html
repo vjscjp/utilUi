@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		
+		<title>Shipped - Build, Deploy & Run Your Idea in 5 Minutes</title>
+		<link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+		<!-- Bootstrap Core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/D3Custom.css">
+		<link rel="stylesheet" type="text/css" href="css/Slider.css">
+		<!-- Custom CSS -->
+		<link href="css/main.css" rel="stylesheet">
+		
+		<!-- Custom Fonts -->
+		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	</head>
+	<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+		<!-- Navigation -->
+		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a class="navbar-brand page-scroll" href="#page-top">
+						<img class="cisco-logo" src="img/cisco-logo.png" />
+					</a>
+					
+				</div>
+				
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container -->
+		</nav>
+		
+		
+		<br/><br/><br/>
+		<!-- three colum layout -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3">
+					<br/><br/>
+					<h3 style="margin-bottom:10px">Search Application details</h3>
+					<p style="margin-bottom:0px">Search by Host Name and Port No.</p>
+					<div class="form-group">
+						
+						<label for="host">
+							Host Name
+						</label>
+						<input type="text" class="form-control" id="host" placeholder="shipped-tx3.102.node"/>
+					</div>
+					<div class="form-group">
+						
+						<label for="port">
+							Port No
+						</label>
+						<input type="text" class="form-control" id="port" placeholder="134326"/>
+					</div>
+					<div class="form-group">
+						<img src="img/divider.png" />
+					</div>
+					<p style="margin-bottom:0px">Search by App Id.</p>
+					<div class="form-group">
+						
+						<label for="host">
+							App Id
+						</label>
+						<input type="text" class="form-control" id="app" placeholder="mantl--app" />
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success" id="btnSearch">
+							Search
+						</button>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default  app-details">
+						<div class="panel-heading">Application Details</div>
+						<div class="panel-body">
+							<div class="container-fluid">
+								<div class="row app-details-row">
+									<p><label>Id: </label><strong id="id"></strong></p>
+									<p><label>Project name: </label><strong id="project_name"></strong></p>
+									<p><label>Project Id: </label><strong id="project_id"></strong></p>
+									<p><label>Env name: </label><strong id="env_name"></strong></p>
+									<p><label>Env Id: </label><strong id="env_id"></strong></p>
+									<p><label>Service name: </label><strong id="service_name"></strong></p>
+									<p><label>Service Id: </label><strong id="service_id"></strong></p>
+                                    <p><label><strong>Tasks:</strong></label></p>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-5">
+					<div id="s1">
+						<div id="treeOne"></div> <!-- tree node -->
+					</div>
+                </div>
+			</div>
+		</div>
+		<!-- load the d3.js library -->	
+		
+		
+		
+		<script src="js/d3.v3.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+		<!--<script src="data/D3Data.json"></script>
+		<script src="js/D3Code.js"></script>-->
+		<script src="js/searchedApp.js"></script>
+        <script src="js/custom.js"></script>
+		<script type="text/template" id="tasks_list">
+			<div>
+                <a href="#" data-toggle="collapse" class="task-link" >task1</a>
+                <div class="task-content collapse" >
+                    <p><label>Host: </label><strong class="host"></strong></p>
+                    <p><label>Ports: </label><strong class="ports"></strong></p>
+                    <p><label>Id:</label><strong class="id"></strong></p>
+                    <p><label>AppId: </label><strong class="app-id"></strong></p>
+                </div>
+            </div>
+        </script>
+    </body>
+</html>

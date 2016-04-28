@@ -1,0 +1,28 @@
+.axis {
+  font: 14px sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.axis .domain {
+  fill: #1B8829;
+  stroke: #1B8829;
+  stroke-opacity: 1;
+  stroke-width: 10px;
+
+}
+
+.axis .domain.danger{
+    fill: #E25757;
+  stroke: #E25757;
+}
+
+.slider .handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: .5;
+  stroke-width: 1.25px;
+  cursor: pointer;
+        
+}

@@ -1,0 +1,76 @@
+.node {
+		cursor: pointer;
+	}
+
+	.node circle {
+	  fill: #fff;
+	  stroke: steelblue;
+	  stroke-width: 3px;
+	}
+
+	.node text {
+	  font: 12px sans-serif;
+	}
+
+	.link {
+	  fill: none;
+	  stroke: #ccc;
+	  stroke-width: 2px;
+	}
+
+	
+.tasks{
+	background-color: #F6F8F8;
+	padding: 10px;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+.tasks span{
+	font-weight: bold;
+}
+.tasks input{
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.tasks a{
+	color: #000;
+	text-decoration: none;
+	border:none;
+}
+.tasks a:hover{
+	border-bottom: dashed 1px #0088cc;
+}
+.tasks label{
+	display: block;
+	text-align: center;
+}
+.progress .red
+{
+	    background-color: #E25757;
+}
+
+.progress .green
+{
+	    background-color: #1B8829;
+}
+.spider
+{
+	width: 75%;margin-left: 15%;
+}
+
+#s1, #s2, #s3,#sp2
+{
+	display:none;
+}
+
+#panel1, #panel2, #panel3
+{
+	visibility:hidden;
+}
+.link{
+    stroke:	 #1B8829;
+}
+#treeTwo .link{
+    stroke: #E25757;
+}

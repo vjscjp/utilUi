@@ -1,0 +1,30 @@
+{
+	"id": "/test--iter21--iter21--b30f90",
+	"projectname": "iter21",
+	"projectid": "29ca8b52-e687-11e5-812e-0242ac11018e",
+	"envname": "test",
+	"envid": "77527071-e687-11e5-9d92-0242ac1102db",
+	"servicename": "iter21",
+	"serviceid": "35b4aa3e-e687-11e5-9d90-0242ac1102db",
+	"tasks": [{
+		"host": "shipped-eu-worker-106.node.consul",
+		"ports": [4664],
+		"id": "test--iter21--iter21--b30f90.fa00d422-002f-11e6-8175-f2f513476320",
+		"appid": "/test--iter21--iter21--b30f90"
+	}, {
+		"host": "shipped-eu-worker-106.node.consul",
+		"ports": [4665],
+		"id": "test--iter21--iter21--b30f90.fa00d422-002f-11e6-8175-f2f513476320",
+		"appid": "/test--iter21--iter21--b30f90"
+	}, {
+		"host": "shipped-eu-worker-106.node.consul",
+		"ports": [4666],
+		"id": "test--iter21--iter21--b30f90.fa00d422-002f-11e6-8175-f2f513476320",
+		"appid": "/test--iter21--iter21--b30f90"
+	}, {
+		"host": "b",
+		"ports": [5666],
+		"id": "test--iter21--iter21--b30f90.fa00d422-002f-11e6-8175-f2f513476320",
+		"appid": "/test--iter21--iter21--b30f90"
+	}]
+}
