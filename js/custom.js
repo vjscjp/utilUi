@@ -2,7 +2,9 @@
 var endPoint = "http://localhost:8888";
 //var endPoint = "http://dev--api4--api4--13db66.shipped-cisco.com";
 var loginEndPoint = endPoint+"/login";
+var logoutEndPoint = endPoint+"/logout";
 var appEndPoint = endPoint + "/apps/{{appName}}";
+var listappsEndPoint = endPoint + "/apps";
 var hostPortEndpoint = endPoint + "/hostport/{{hostName}}/{{port}}";
 
 function reset()
@@ -12,11 +14,62 @@ function reset()
 	$("#app").val('');
 }
 
-function callListAppId(endPoint)
+function callListAppId()
 {
-	//[{ id: 0, text: 'enhancement' }]
-	//Make sure api give result in this format
-    
+    $.ajax({
+        url: listappsEndPoint,
+        beforeSend: function (request)
+        {
+           request.setRequestHeader("X-Token", localStorage.getItem("token"));
+        },
+        error: function() {
+            callErrorDialog("Please login and Retry, You credentials expire");
+            sessionOut();
+            siteView('L');
+            setTimeout(function(){$('#loader').hide();},500);
+        },
+        success: function(data, status, xhr) {
+            $("#urlHead").html("<b>Current Session Pointing to : </b> "+localStorage.getItem("url"));
+            $('#app').select2({
+              placeholder: {
+                id: '-1', // the value of the option
+                text: 'Select an option'
+              },
+            data:data
+            }).on('change', function (e) {
+                 $('#loader').show();
+                callAppIdApi();
+                 setTimeout(function(){$('#loader').hide(); },1000);
+            });
+            $('#errorMsg').modal('hide'); 
+           setTimeout(function(){$('#loader').hide();	},1500);
+        },
+        type: 'GET'
+    });
+}
+
+function callLogoutAPI()
+{
+    $.ajax({
+        url: logoutEndPoint,
+        beforeSend: function (request)
+        {
+           request.setRequestHeader("X-Token", localStorage.getItem("token"));
+        },
+        error: function() {
+            callErrorDialog("User Already Logged Out.");
+            sessionOut();
+            siteView('L');
+            setTimeout(function(){$('#loader').hide();},500);
+        },
+        success: function(data, status, xhr) {
+            callErrorDialog("Logging out....");
+            sessionOut();
+            siteView('L');
+            setTimeout(function(){$('#loader').hide();	$('#errorMsg').modal('hide'); },2000);
+        },
+        type: 'GET'
+    });
 }
 
 function callLoginAPI(id,pass,url)
@@ -35,7 +88,7 @@ function callLoginAPI(id,pass,url)
        }
        else
        {
-           sessionIn(data.Token);
+           sessionIn(data.Token,url);
            jsonData = data.Apps;
             $('#app').select2({
               placeholder: {
@@ -43,9 +96,12 @@ function callLoginAPI(id,pass,url)
                 text: 'Select an option'
               },
             data:jsonData
+            }).on('change', function (e) {
+                 $('#loader').show();
+                callAppIdApi();
+                 setTimeout(function(){$('#loader').hide(); },1000);
             });
             $("#urlHead").html("<b>Current Session Pointing to : </b> "+localStorage.getItem("url"));
-            $('#s1').show();
             resetLoginForm();
         }
     },
@@ -59,22 +115,20 @@ function callHostPortApi() {
 	var requestURL = hostPortEndpoint.replace('{{hostName}}', encodeURI(hostName)).replace('{{port}}', encodeURI(port));    
     
     $.ajax({
-    url: requestURL,
-         beforeSend: function (request)
-    {
-       request.setRequestHeader("X-Token", localStorage.getItem("token"));
-    },
-    error: function() {
-     callErrorDialog("We didn't find any app running on given Host Name and Port No.");
-       // loadDataFromJson();
-		setTimeout(function(){$('#loader').hide();},500);
-    },
-        headers: { 'Cookie': localStorage.getItem("token") },
-    success: function(data, status, xhr) {
-       renderApiData(data);
-		setTimeout(function(){$('#loader').hide();},500);
-    },
-    type: 'GET'
+        url: requestURL,
+        beforeSend: function (request)
+        {
+           request.setRequestHeader("X-Token", localStorage.getItem("token"));
+        },
+        error: function() {
+            callErrorDialog("We didn't find any app running on given Host Name and Port No.");
+            setTimeout(function(){$('#loader').hide();},500);
+        },
+        success: function(data, status, xhr) {
+           renderApiData(data);
+            setTimeout(function(){$('#loader').hide();},500);
+        },
+        type: 'GET'
     });
     
 }
@@ -82,26 +136,21 @@ function callHostPortApi() {
 function callAppIdApi() {
 	var appName = $("#app").val().trim().replace('/','');
 	var requestURL = appEndPoint.replace('{{appName}}', encodeURI(appName));
-    
-     $.ajax({
-          
-    url: requestURL,
-    beforeSend: function (request)
-    {
-       request.setRequestHeader("X-Token", localStorage.getItem("token"));
-    },
-    error: function() {
-     callErrorDialog("We didn't find any app running for given application id.");
-        //loadDataFromJson();
-			setTimeout(function(){$('#loader').hide();},500);
-    },
-    //headers: { 'Cookie': localStorage.getItem("token") },
-    success: function(data, status, xhr) {
-        debugger;
-       renderApiData(data);
-			setTimeout(function(){$('#loader').hide();},500);
-    },
-    type: 'GET'
+     $.ajax({  
+        url: requestURL,
+        beforeSend: function (request)
+        {
+           request.setRequestHeader("X-Token", localStorage.getItem("token"));
+        },
+        error: function() {
+            callErrorDialog("We didn't find any app running for given application id.");
+            setTimeout(function(){$('#loader').hide();},500);
+        },
+        success: function(data, status, xhr) {
+           renderApiData(data);
+           setTimeout(function(){$('#loader').hide();},500);
+        },
+        type: 'GET'
     });
 
 }

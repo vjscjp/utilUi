@@ -32,7 +32,7 @@ function renderApiData(data) {
             icon: "img/v4.PNG",
             children : []
         };
-        
+        $("#s1").show();
         $.each(uniqueHosts, function(i){
             var host = {
                 name : uniqueHosts[i],
@@ -73,11 +73,12 @@ function callErrorDialog(msg)
 	$('#loader').hide();
 }
 
-function sessionIn(token)
+function sessionIn(token,url)
 {
 	localStorage.setItem("sessionId",Number(new Date()));
 	localStorage.setItem("token",token);
-       siteView("I");
+    localStorage.setItem("url",url);
+    siteView("I");
 }
 
 //Login - L, InnerView - I
@@ -86,19 +87,22 @@ function siteView(code)
     $("#loginPanel").hide();
     $("#innerPanel").hide();
     $(".logoutHeaderPanel").hide();
+    $('.app-details').hide();
+     $("#s1").hide();
     if(code == "L")
     {
-        $("#loginPanel").show();
+        $("#loginPanel").fadeIn();
     }
     else if(code == "I")
     {
-         $("#innerPanel").show();
-        $(".logoutHeaderPanel").show();
+         $("#innerPanel").fadeIn();
+        $(".logoutHeaderPanel").fadeIn();
     }
 }
 
 function sessionOut()
 {
+    localStorage.setItem("url",'');
 	localStorage.setItem("sessionId","");
 	localStorage.setItem("token","");
      siteView("L");

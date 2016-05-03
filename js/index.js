@@ -6,7 +6,9 @@
     	
 	if(sessionCheck())
 	{
-       siteView("I");
+        siteView("I");
+        callErrorDialog("Loading data ....");
+        callListAppId();
     }
 	else
 	{    
@@ -21,20 +23,26 @@
 function ButtonRegistry()
 {
     $("#btnLogout").click(function(){
-			siteView("L");
-            sessionOut();
+            callLogoutAPI();
     });
     
     $("#btnSearch").click(function () {
-			$('#loader').show();
+			
 			if ($("#host").val().trim() != "") {
 				if ($("#port").val().trim() != "") {
 					callHostPortApi();
+                    $("#app").val('-1').trigger("change");
+                    $('#loader').show();
+                     setTimeout(function(){$('#loader').hide();},1000);
 				} else {
 					callErrorDialog('Missing <span class="label label-warning"> Port Number </span>, Please provide valid Port #');
 				}
 			} else if ($("#app").val().trim() != "") {
 				callAppIdApi();
+                $("#host").val('');
+                $("#port").val('');
+                    $('#loader').show();
+                     setTimeout(function(){$('#loader').hide();},1000);
 			} else {
 				callErrorDialog('Please provide Either <span class="label label-warning"> Hostname, Port No</span> or <span class="label label-warning">Application id</span> to get running application details.');
 			}
@@ -52,9 +60,9 @@ function ButtonRegistry()
 			{
 				if(pass.val()!= "")
 				{
-                    $('#loader').show();
+                    $('#loader2').show();
                     callLoginAPI(user.val(),pass.val(),url.val());
-					
+					setTimeout(function(){$('#loader2').hide();},3000);
 				}
 				else
 				{
