@@ -73,27 +73,45 @@ function callErrorDialog(msg)
 	$('#loader').hide();
 }
 
-function sessionIn(url,user,pass)
+function sessionIn(token)
 {
 	localStorage.setItem("sessionId",Number(new Date()));
-	localStorage.setItem("url",url);
-	localStorage.setItem("user",user);
-	localStorage.setItem("pass",pass);
+	localStorage.setItem("token",token);
+       siteView("I");
 }
+
+//Login - L, InnerView - I
+function siteView(code)
+{
+    $("#loginPanel").hide();
+    $("#innerPanel").hide();
+    $(".logoutHeaderPanel").hide();
+    if(code == "L")
+    {
+        $("#loginPanel").show();
+    }
+    else if(code == "I")
+    {
+         $("#innerPanel").show();
+        $(".logoutHeaderPanel").show();
+    }
+}
+
 function sessionOut()
 {
 	localStorage.setItem("sessionId","");
-	localStorage.setItem("url","");
-	localStorage.setItem("user","");
-	localStorage.setItem("pass","");
+	localStorage.setItem("token","");
+     siteView("L");
 }
 function sessionCheck()
 {
-	if(localStorage.getItem("sessionId")!="")
+	if(localStorage.getItem("token")!="")
 	{
+        siteView("L");
 		return true;
 	}
 	else{
+        siteView("I");
 		return false;
 		}
 }
